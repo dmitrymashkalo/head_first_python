@@ -1,4 +1,4 @@
-# Description
+# Description of the book
 
 Want to learn the Python language without slogging your way through how-to manuals? With Head First Python, youll quickly grasp Pythons fundamentals, working with the built-in data structures and functions. Then youll move on to building your very own webapp, exploring database management, exception handling, and data wrangling. If youre intrigued by what you can do with context managers, decorators, comprehensions, and generators, its all here. This second edition is a complete learning experience that will help you become a bonafide Python programmer in no time.
 
