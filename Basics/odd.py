@@ -1,4 +1,4 @@
-# >>> Первая программа
+# >>> First program
 
 from datetime import datetime
 
