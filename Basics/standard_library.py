@@ -3,7 +3,7 @@ import time
 import sys
 import os
 
-# >>> Стандартная библиотека под лупой
+# >>> Тема: Стандартная библиотека под лупой
 
 print(sys.platform) # Определяем операционную систему
 print(sys.version) # Определяем версию python
