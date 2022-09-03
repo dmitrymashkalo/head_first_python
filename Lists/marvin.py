@@ -1,4 +1,5 @@
-# Using a "for" cycle with lists in Python.
+# Description.
+# This program shows how well lists interact with the "for" cycle.
 
 paranoid_android = 'Marvin'
 letters = list(paranoid_android)
