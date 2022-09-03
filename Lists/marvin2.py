@@ -1,4 +1,5 @@
- # Using a "for" cycle with list slicing & indexing
+# Description.
+# The second version of the program demonstrates the use of square brackets in Python by creating three slices to extract and display fragments from a list of letters.
 
 paranoid_android = 'Marvin, the Paranoid Android'
 letters = list(paranoid_android)
