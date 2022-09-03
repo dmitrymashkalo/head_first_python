@@ -4,4 +4,4 @@ paranoid_android = 'Marvin'
 letters = list(paranoid_android)
 
 for i in letters:
-    print('\t', i)
+    print('\t', i)  #'\t' - Символ табуляции
