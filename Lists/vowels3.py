@@ -1,3 +1,6 @@
+# Description:
+# The third and final version of a program that displays non-repeating vowels found in a word entered by the user.
+
 vowels = ['a', 'e', 'i', 'o', 'u']
 found = []
 
