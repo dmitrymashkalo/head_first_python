@@ -1,4 +1,6 @@
-# Convert "Don't panic!" to "on tap" with list slicing & indexing
+# Description:
+# List methods are not the only way to work with them.
+# This program has the same result as the previous version but is obtained by using square brackets.
 
 phrase = "Don't panic!"
 plist = list(phrase)
