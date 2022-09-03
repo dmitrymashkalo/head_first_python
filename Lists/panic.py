@@ -1,4 +1,5 @@
-# Convert "Don't panic!" to "on tap" with list methods.
+# Description:
+# The "Don't panic!" program takes this string as input and uses list methods to convert it to the string "on tap".
 
 phrase = "Don't panic!"
 plist = list(phrase)
