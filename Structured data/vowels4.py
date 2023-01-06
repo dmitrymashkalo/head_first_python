@@ -1,5 +1,6 @@
 # Description:
-# The third and final version of a program that displays non-repeating vowels found in a word entered by the user.
+# The four version of a program that displays non-repeating vowels found in a word entered by the user.
+# Using dictionaries for the vowel frequency counter.
 
 vowels = ['a', 'e', 'i', 'o', 'u']
 found = {
