@@ -9,7 +9,7 @@ def hello() -> str:
     return 'Hello world from Flask!'
 
 
-@app.route('/search')
+@app.route('/search', methods=['POST'])
 def do_search() -> str:
     return str(search_for_letters('Life, the universe, and everything!', 'eiru,!'))
 
