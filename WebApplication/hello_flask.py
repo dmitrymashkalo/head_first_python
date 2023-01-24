@@ -24,4 +24,5 @@ def entry_page() -> 'html':
                            the_title='Welcome to search for letters on the web!')
 
 
-app.run(debug='True')
+if __name__ == '__main__':
+    app.run(debug='True')
