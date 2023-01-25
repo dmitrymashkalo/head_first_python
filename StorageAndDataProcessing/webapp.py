@@ -9,8 +9,9 @@ def search_for_letters(phrase: str, letters: str = 'aeiou') -> set:
 
 
 def log_request(req: 'flask_request', res: str) -> 'None':
+    """ Write the usage log to the end of the 'vsearch.log' file."""
     with open('vsearch.log', 'a') as log:
-        print(req, res, end='', file=log)
+        print(req, res, file=log)
 
 
 
@@ -20,6 +21,7 @@ def do_search() -> 'html':
     letters = request.form['letters']
     title = 'Here are your results:'
     results = str(search_for_letters(phrase, letters))
+    log_request(request, results)
 
     return render_template('results.html',
                            the_title=title,
@@ -33,6 +35,13 @@ def do_search() -> 'html':
 def entry_page() -> 'html':
     return render_template('entry.html',
                            the_title='Welcome to search for letters on the web!')
+
+
+@app.route('/viewlog')
+def view_log() -> str:
+    with open('vsearch.log') as log:
+        content = log.read()
+        return content
 
 
 if __name__ == '__main__':
