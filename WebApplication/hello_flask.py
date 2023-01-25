@@ -17,6 +17,7 @@ def do_search() -> 'html':
                            the_letters=letters,
                            the_results=results)
 
+
 @app.route('/')
 @app.route('/entry')
 def entry_page() -> 'html':
@@ -25,4 +26,4 @@ def entry_page() -> 'html':
 
 
 if __name__ == '__main__':
-    app.run(debug='True')
+    app.run(debug=True)
