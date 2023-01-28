@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, escape
 
 app = Flask(__name__)
 
@@ -11,8 +11,7 @@ def search_for_letters(phrase: str, letters: str = 'aeiou') -> set:
 def log_request(req: 'flask_request', res: str) -> 'None':
     """ Write the usage log to the end of the 'vsearch.log' file."""
     with open('vsearch.log', 'a') as log:
-        print(req, res, file=log)
-
+        print(req.form, req.remote_addr, req.user_agent, res, file=log, sep='|')
 
 
 @app.route('/search', methods=['POST'])
@@ -33,15 +32,25 @@ def do_search() -> 'html':
 @app.route('/')
 @app.route('/entry')
 def entry_page() -> 'html':
+    title = 'Welcome to search for letters on the web!'
     return render_template('entry.html',
-                           the_title='Welcome to search for letters on the web!')
+                           the_title=title)
 
 
 @app.route('/viewlog')
-def view_log() -> str:
+def view_log() -> 'html':
+    contents = []
     with open('vsearch.log') as log:
-        content = log.read()
-        return content
+        for i in log:
+            contents.append([])
+            for item in i.split('|'):
+                contents[-1].append(escape(item))
+
+    titles = ('Form Data', 'Remote addr', 'User agent', 'Results')
+    return render_template('viewlog.html',
+                           the_title='View Log',
+                           the_row_title=titles,
+                           the_data=contents)
 
 
 if __name__ == '__main__':
