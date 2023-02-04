@@ -1,5 +1,7 @@
 from flask import Flask, render_template, request, escape
-import mysql.connector
+
+
+app = Flask(__name__)
 
 
 def search_for_letters(phrase: str, letters: str = 'aeiou') -> set:
@@ -15,12 +17,18 @@ def log_request(req: 'flask_request', res: str) -> 'None':
                 'password': 'vsearchpassword',
                 'database': 'vsearchlogDB'}
 
+    import mysql.connector
+
     conn = mysql.connector.connect(**dbconfig)
     cursor = conn.cursor()
 
-    _SQL = """INSERT INTO log (phrase, letters, ip, browser_string, results) VALUES (%s, %s, %s, %s, %s);"""
+    _SQL = """insert into log (phrase, letters, ip, browser_string, results) values (%s, %s, %s, %s, %s)"""
 
-    cursor.execute(_SQL, (req.form['phrase'], req.form['letters'], req.remote_addr, req.user_agent, res))
+    cursor.execute(_SQL, (req.form['phrase'],
+                          req.form['letters'],
+                          req.remote_addr,
+                          req.user_agent.browser,
+                          res))
 
     conn.commit()
     cursor.close()
@@ -50,20 +58,20 @@ def entry_page() -> 'html':
                            the_title=title)
 
 
-# @app.route('/viewlog')
-# def view_log() -> 'html':
-#     contents = []
-#     with open('vsearch.log') as log:
-#         for i in log:
-#             contents.append([])
-#             for item in i.split('|'):
-#                 contents[-1].append(escape(item))
-#
-#     titles = ('Form Data', 'Remote addr', 'User agent', 'Results')
-#     return render_template('viewlog.html',
-#                            the_title='View Log',
-#                            the_row_title=titles,
-#                            the_data=contents)
+@app.route('/viewlog')
+def view_log() -> 'html':
+    contents = []
+    with open('vsearch.log') as log:
+        for i in log:
+            contents.append([])
+            for item in i.split('|'):
+                contents[-1].append(escape(item))
+
+    titles = ('Form Data', 'Remote addr', 'User agent', 'Results')
+    return render_template('viewlog.html',
+                           the_title='View Log',
+                           the_row_title=titles,
+                           the_data=contents)
 
 
 if __name__ == '__main__':
