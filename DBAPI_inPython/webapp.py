@@ -27,7 +27,7 @@ def log_request(req: 'flask_request', res: str) -> 'None':
     cursor.execute(_SQL, (req.form['phrase'],
                           req.form['letters'],
                           req.remote_addr,
-                          req.user_agent.browser,
+                          req.headers.get('User-Agent'),
                           res))
 
     conn.commit()
