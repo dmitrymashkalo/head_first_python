@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, escape
+import mysql.connector
 
 
 app = Flask(__name__)
@@ -16,8 +17,6 @@ def log_request(req: 'flask_request', res: str) -> 'None':
                 'user': 'vsearch',
                 'password': 'vsearchpassword',
                 'database': 'vsearchlogDB'}
-
-    import mysql.connector
 
     conn = mysql.connector.connect(**dbconfig)
     cursor = conn.cursor()
